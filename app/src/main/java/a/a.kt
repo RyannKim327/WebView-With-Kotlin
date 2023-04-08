@@ -92,6 +92,7 @@ class a : AppCompatActivity(){
 	override fun onDestroy() {
 		web_incog.clearHistory()
 		web_incog.clearFormData()
+		web_incog.clearCache(true)
 		super.onDestroy()
 	}
 }
