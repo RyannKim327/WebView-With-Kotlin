@@ -34,6 +34,12 @@ class a : AppCompatActivity(){
 		web_normal.visibility = View.VISIBLE;
 		web_incog.visibility = View.GONE;
 
+		web_normal.settings.javaScriptEnabled = true
+		web_normal.settings.javaScriptCanOpenWindowsAutomatically = false
+
+		web_incog.settings.javaScriptEnabled = true
+		web_incog.settings.javaScriptCanOpenWindowsAutomatically = false
+
 		web_normal.webViewClient = WebViewClient()
 		web_normal.webChromeClient = WebChromeClient()
 		web_incog.webViewClient = WebViewClient()
@@ -44,6 +50,20 @@ class a : AppCompatActivity(){
 
 		web_normal.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 		web_incog.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
+
+		normal.setOnClickListener(object: View.OnClickListener {
+			override fun onClick(v: View?){
+				if(web_normal.visibility == View.VISIBLE){
+					web_normal.visibility = View.GONE
+					web_incog.visibility = View.VISIBLE
+					normal.text = "Incognito Mode"
+				}else{
+					web_normal.visibility = View.VISIBLE
+					web_incog.visibility = View.GONE
+					normal.text = "Normal Mode"
+				}
+			}
+		})
 
 		base.addView(normal)
 		base.addView(web_normal)
@@ -67,5 +87,11 @@ class a : AppCompatActivity(){
 				super.onBackPressed()
 			}
 		}
+	}
+
+	override fun onDestroy() {
+		web_incog.clearHistory()
+		web_incog.clearFormData()
+		super.onDestroy()
 	}
 }
