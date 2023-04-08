@@ -8,6 +8,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 
@@ -55,12 +56,14 @@ class a : AppCompatActivity(){
 			if(web_normal.canGoBack()){
 				web_normal.goBack()
 			}else{
+				Toast.makeText(this, "Thank you for using", Toast.LENGTH_SHORT).show()
 				super.onBackPressed()
 			}
 		}else if(web_incog.visibility == View.VISIBLE){
 			if(web_incog.canGoBack()){
 				web_incog.goBack()
 			}else{
+				Toast.makeText(this, "Thank you for using", Toast.LENGTH_SHORT).show()
 				super.onBackPressed()
 			}
 		}
